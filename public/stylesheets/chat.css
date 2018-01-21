@@ -1,0 +1,12 @@
+#chat {
+    height: 500px;
+    background-color: lightgray;
+}
+
+#chat-input {
+    padding-left: 0px;
+}
+
+#sender {
+    margin-top: 10px;    
+}
