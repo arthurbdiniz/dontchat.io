@@ -5,7 +5,9 @@ var router = express.Router({
 
 // GET chat page
 router.get('/', function (req, res, next) {
-  res.send(`Received request for ${req.params.chatCode}`);
+  res.render('chat', {
+    chatPath: req.params.chatPath
+  });
 });
 
 module.exports = router;

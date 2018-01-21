@@ -1,6 +1,7 @@
 // packages
 var express = require('express');
 var path = require('path');
+var socketIO = require('socket.io');
 
 // nested routes
 var index = require('./routes/index');
@@ -16,8 +17,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routes setup
 app.use('/', index);
-app.use('/:chatCode', chat);
+app.use('/:chatPath', chat);
 
 var server = app.listen(app.get('port'), function () {
     console.log(`Listening on port ${app.get('port')}`);
+});
+
+// socket connection
+var io = socketIO(server);
+
+// socket events
+io.on('connection', function (socket) {
+    console.log(`Made connection with id: ${socket.id}`);
+});
+
+io.on('disconnect', function (socket) {
+    console.log(`Disconnected with id: ${socket.id}`);
 });
