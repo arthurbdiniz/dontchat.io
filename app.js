@@ -29,6 +29,10 @@ var io = socketIO(server);
 // socket events
 io.on('connection', function (socket) {
     console.log(`Made connection with id: ${socket.id}`);
+
+    socket.on('chat-send', function (data) {
+        console.log(data);
+    });
 });
 
 io.on('disconnect', function (socket) {

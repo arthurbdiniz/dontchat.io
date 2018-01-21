@@ -11,18 +11,24 @@
 </head>
 
 <body>
+
   <div id="chat" class="container">
     <div id="msgs" class="row"></div>
   </div>
+
   <div id="sender" class="container">
     <div class="row justify-content-left">
+
       <div id="chat-input" class="container col-12 col-md-10">
-        <input type="text" class="form-control col-12" placeholder="nickname">
-        <input type="text" class="form-control col-12" placeholder="message">
+        <input id="nickname" type="text" class="form-control col-12" placeholder="nickname">
+        <input id="message" type="text" class="form-control col-12" placeholder="message">
       </div>
-      <button type="button" class="btn btn-success col-4 col-md-2">Send</button>
+
+      <button id="send" type="button" class="btn btn-success col-4 col-md-2">Send</button>
+      
     </div>
   </div>
+
   <script src="javascripts/chat.js"></script>
 </body>
 
