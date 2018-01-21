@@ -28,10 +28,12 @@ var io = socketIO(server);
 
 // socket events
 io.on('connection', function (socket) {
-    console.log(`Made connection with id: ${socket.id}`);
+    console.log(`ID CONNECTED ${socket.id}`);
 
     socket.on('chat-send', function (data) {
+        console.log(`Received data from ${data.nickname} on ${data.room}`);
         console.log(data);
+        io.sockets.emit('chat-receive', data);
     });
 });
 

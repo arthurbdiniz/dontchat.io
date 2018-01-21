@@ -1,5 +1,5 @@
 // socket connection
-let socket = io.connect();
+let socket = io();
 
 // DOM queries
 let send = document.getElementById('send');
@@ -14,7 +14,10 @@ message.addEventListener('keydown', function (event) {
     }
 });
 
-// functions
+// Socket events
+socket.on('chat-receive', receiveMessage);
+
+// helpers
 function processNickname(nick) {
     if (nick === '' || nick.match(/^ *$/)) {
         let nick = `Anonymous ${Date.now()}`;
@@ -24,14 +27,20 @@ function processNickname(nick) {
     }
 }
 
+// event functions
 function sendMessage() {
     nickname.value = processNickname(nickname.value);
 
     let data = {
+        room: window.location.pathname,
         nickname: nickname.value,
         message: message.value,
         time: Date.now()
     }
     socket.emit('chat-send', data);
     message.value = '';
+}
+
+function receiveMessage(data) {
+    console.log(data);
 }
