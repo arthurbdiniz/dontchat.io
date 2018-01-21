@@ -5,6 +5,7 @@ let socket = io();
 let send = document.getElementById('send');
 let message = document.getElementById('message');
 let nickname = document.getElementById('nickname');
+let messages = document.getElementById('messages');
 
 // Events
 send.addEventListener('click', sendMessage);
@@ -27,6 +28,11 @@ function processNickname(nick) {
     }
 }
 
+function formatMessage(data) {
+    let msg = `<strong>${data.nickname}:</strong> ${data.message}`;
+    return msg;
+}
+
 // event functions
 function sendMessage() {
     nickname.value = processNickname(nickname.value);
@@ -43,4 +49,9 @@ function sendMessage() {
 
 function receiveMessage(data) {
     console.log(data);
+    let formattedMessage = formatMessage(data);
+    let msg = document.createElement('li');
+    msg.innerHTML += formattedMessage;
+    msg.setAttribute('class', 'list-group-item');
+    messages.appendChild(msg);
 }
