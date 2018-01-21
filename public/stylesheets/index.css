@@ -1,0 +1,24 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+#path-finder-div {
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#path-finder-label {
+    float: left;
+    margin-right: 10px;
+}
+
+
+#path-finder {
+    float: right;
+    resize: horizontal;
+    line-height: 24pt;
+    font-size: 20pt;
+}
