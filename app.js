@@ -17,26 +17,40 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routes setup
 app.use('/', index);
-app.use('/:chatPath', chat);
+app.use('/:chatPath', chat, registerNamespace);
 
 var server = app.listen(app.get('port'), function () {
     console.log(`Listening on port ${app.get('port')}`);
 });
 
+
 // socket connection
 var io = socketIO(server);
 
-// socket events
-io.on('connection', function (socket) {
-    console.log(`ID CONNECTED ${socket.id}`);
+// registered namespaces
+let namespaces = {};
 
-    socket.on('chat-send', function (data) {
-        console.log(`Received data from ${data.nickname} on ${data.room}`);
-        console.log(data);
-        io.sockets.emit('chat-receive', data);
+// namespace handling
+function registerNamespace(req, res) {
+    let namespace = `/${req.params.chatPath}`;
+    if (namespace in namespaces) {
+        return;
+    }
+
+    console.log(`Registering ${namespace}`);
+    namespaces[namespace] = io.of(namespace);
+    activateNamespace(namespaces[namespace]);
+}
+
+function activateNamespace(nsp) {
+    nsp.on('connection', function (socket) {
+        console.log(`ID CONNECTED ${socket.id}`);
+
+        socket.on('chat-send', function (data) {
+            console.log(`Received data from ${data.nickname} on ${data.room}`);
+            console.log(data);
+            nsp.emit('chat-receive', data);
+        });
     });
-});
-
-io.on('disconnect', function (socket) {
-    console.log(`Disconnected with id: ${socket.id}`);
-});
+    console.log(`Activated ${nsp.name}`);
+}

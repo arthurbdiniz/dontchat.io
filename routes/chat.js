@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
   res.render('chat', {
     chatPath: req.params.chatPath
   });
+  next();
 });
 
 module.exports = router;

@@ -1,5 +1,5 @@
 // socket connection
-let socket = io();
+let socket = io.connect(window.location.pathname);
 
 // DOM queries
 let send = document.getElementById('send');
@@ -38,7 +38,7 @@ function sendMessage() {
     nickname.value = processNickname(nickname.value);
 
     let data = {
-        room: window.location.pathname,
+        namespace: window.location.pathname,
         nickname: nickname.value,
         message: message.value,
         time: Date.now()
