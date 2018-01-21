@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Dont Chat</title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/buttons.css">
-  </head>
-  <body>
-    <h1>Welcome to DontChat</h1>
-    <h3>Please enter the desired path:</h3>
-    <div id="path-finder-div">
-      <p id="path-finder-label">dontchat.com/</p>
-      <input id="path-finder" type="text" placeholder="path" autofocus></textarea>
-    </div>
-    <button type="button" class="button">Go!</button>
-  </body>
+
+<head>
+  <title>Dont Chat</title>
+</head>
+
+<body>
+  <input id="path" type="text" name="path">
+  <input type="submit" onclick="return go();">
+  <script type="text/javascript" src="javascripts/path-finder.js">
+  </script>
+</body>
+
 </html>
