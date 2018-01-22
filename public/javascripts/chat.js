@@ -20,7 +20,7 @@ socket.on('chat-receive', receiveMessage);
 
 // helpers
 function processNickname(nick) {
-    if (nick === '' || nick.match(/^ *$/)) {
+    if (isEmptyOrWhiteSpaces(nick)) {
         let nick = `Anonymous ${Date.now()}`;
         return nick;
     } else {
@@ -35,6 +35,10 @@ function formatMessage(data) {
 
 // event functions
 function sendMessage() {
+    if (isEmptyOrWhiteSpaces(message.value)) {
+        return;
+    }
+
     nickname.value = processNickname(nickname.value);
 
     let data = {
@@ -54,4 +58,11 @@ function receiveMessage(data) {
     msg.innerHTML += formattedMessage;
     msg.setAttribute('class', 'list-group-item');
     messages.appendChild(msg);
+}
+
+function isEmptyOrWhiteSpaces(string) {
+    if (string === '' || string.match(/$ *^/)) {
+        return true;
+    }
+    return false;
 }
