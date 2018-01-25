@@ -2,14 +2,27 @@
 <html>
 
 <head>
-  <title>Dont Chat</title>
+  <title>Don't Chat</title>
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet prefetch' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+
 </head>
 
 <body>
-  <input id="path" type="text" name="path">
-  <input type="submit" onclick="return go();">
-  <script type="text/javascript" src="javascripts/path-finder.js">
-  </script>
+  <div class="container">
+    <div class="flex-space"></div>
+    <h1 class="app-title">Don't Chat</h1>
+    <div class="style-input">
+      <input  id="path" type="text" name="path" placeholder="What's your path?">
+      <button  onclick="return go();" type="submit"><i class="icon ion-android-arrow-forward"></i></button>
+    </div>
+    <div class="flex-space"></div>
+    <script type="text/javascript" src="javascripts/path-finder.js"></script>
+  </div>
 </body>
 
 </html>
