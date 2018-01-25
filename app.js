@@ -12,8 +12,9 @@ var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.set('port', process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.set('port', 3000);
 
 // routes setup
 app.use('/', index);
@@ -22,7 +23,6 @@ app.use('/:chatPath', chat, registerNamespace);
 var server = app.listen(app.get('port'), function () {
     console.log(`Listening on port ${app.get('port')}`);
 });
-
 
 // socket connection
 var io = socketIO(server);
@@ -54,3 +54,6 @@ function activateNamespace(nsp) {
     });
     console.log(`Activated ${nsp.name}`);
 }
+
+// server export
+module.exports = app;

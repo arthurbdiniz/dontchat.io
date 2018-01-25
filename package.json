@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "run": "node app.js"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "ejs": "~2.5.7",
